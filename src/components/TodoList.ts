@@ -17,7 +17,13 @@ export const TodoList: Component = () => {
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = todo.done;
+      checkbox.addEventListener("change", () => {
+        todoStore.updateTodo(todo.id, checkbox.checked);
+        render();
+      });
+
       const text = document.createTextNode(todo.text);
+
       const button = document.createElement("button");
       button.innerText = "삭제";
       button.addEventListener("click", () => onRemoveTodo(todo.id));

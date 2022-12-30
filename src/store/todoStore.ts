@@ -22,6 +22,12 @@ class TodoStore {
     this.todos = [...this.todos, todo];
   };
 
+  updateTodo = (id: number, done: boolean) => {
+    this.todos = this.todos.map((todo) =>
+      todo.id === id ? { ...todo, done } : todo
+    );
+  };
+
   removeTodo = (id: number) => {
     this.todos = this.todos.filter((todo) => todo.id !== id);
   };
