@@ -11,6 +11,17 @@ class TodoStore {
     { id: 3, text: "프로젝트에 타입스크립트 적용해보기", done: false },
   ];
 
+  addTodo = (text: string) => {
+    const todo: Todo = {
+      id: this.todos.length
+        ? Math.max(...this.todos.map((todo) => todo.id)) + 1
+        : 1,
+      text,
+      done: false,
+    };
+    this.todos = [...this.todos, todo];
+  };
+
   removeTodo = (id: number) => {
     this.todos = this.todos.filter((todo) => todo.id !== id);
   };
