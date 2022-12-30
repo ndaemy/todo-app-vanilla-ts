@@ -1,1 +1,1 @@
-export type Component = () => HTMLElement;
+export type Component = (reRenderParent?: () => void) => HTMLElement;

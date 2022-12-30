@@ -8,9 +8,15 @@ export const TodoApp: Component = () => {
   const app = document.createElement("div");
   app.id = "todo-app";
 
-  app.appendChild(TodoAppHeader());
-  app.appendChild(TodoInsert());
-  app.appendChild(TodoList());
+  const render = () => {
+    app.innerHTML = "";
+    app.appendChild(TodoAppHeader());
+    // 이게 최선인가
+    app.appendChild(TodoInsert(render));
+    app.appendChild(TodoList());
+  };
+
+  render();
 
   return app;
 };
