@@ -4,16 +4,32 @@ import { Component } from "@/types";
 export const TodoList: Component = () => {
   const list = document.createElement("ul");
 
-  todoStore.todos.forEach((todo) => {
-    const item = document.createElement("li");
-    item.id = String(todo.id);
-    item.innerHTML = `
-      <input type="checkbox" ${todo.done ? "checked" : ""} />
-      <span>${todo.text}</span>
-      <button>삭제</button>
-    `;
-    list.appendChild(item);
-  });
+  const onRemoveTodo = (id: number) => {
+    todoStore.removeTodo(id);
+    render();
+  };
+
+  const render = () => {
+    list.innerHTML = "";
+    todoStore.todos.forEach((todo) => {
+      const item = document.createElement("li");
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = todo.done;
+      const text = document.createTextNode(todo.text);
+      const button = document.createElement("button");
+      button.innerText = "삭제";
+      button.addEventListener("click", () => onRemoveTodo(todo.id));
+
+      item.appendChild(checkbox);
+      item.appendChild(text);
+      item.appendChild(button);
+      list.appendChild(item);
+    });
+  };
+
+  render();
 
   return list;
 };
