@@ -1,6 +1,7 @@
+import { Component } from "@/types";
 import { TodoAppHeader } from "./TodoAppHeader";
 
-export const TodoApp = () => {
+export const TodoApp: Component = () => {
   const app = document.createElement("div");
   app.id = "todo-app";
 
